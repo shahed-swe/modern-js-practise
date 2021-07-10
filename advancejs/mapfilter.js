@@ -1,4 +1,4 @@
-const numbers = [1, 2, 3, 45, 56]
+const numbers = [1, 2, 3, 4, 5, 56, 7, 9, 8, 11, 12, 17]
 
 // const resutl = []
 
@@ -21,3 +21,21 @@ const result = numbers.map((elem, index, array) => {
 })
 
 console.log(result)
+
+const res = numbers.filter((elem) => {
+    return elem % 2 == 0;
+})
+
+
+console.log(res)
+
+
+numbers.forEach(element => {
+    console.log(element)
+});
+
+
+const resnew = numbers.find(element => {
+    return element % 2 == 0;
+})
+console.log(resnew)
