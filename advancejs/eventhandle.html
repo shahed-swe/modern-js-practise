@@ -12,13 +12,18 @@
     <ul id="contents">
 
     </ul>
+    <input type="text" id="mytext">
     <button id="submit">Add Another Item</button>
     <script>
         const ul = document.getElementById('contents');
         document.getElementById('submit').addEventListener('click', function() {
+            const text = document.getElementById('mytext').value;
             const li = document.createElement('li');
-            li.innerHTML = `<p onclick="delete_paragraph(event)">Hi I am here to make you famous</p>`
-            ul.append(li)
+            if (text) {
+                li.innerHTML = `<p onclick="delete_paragraph(event)">${text}</p>`
+                ul.append(li)
+            }
+
         })
 
         function delete_paragraph(event) {
