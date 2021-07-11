@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Hello</h1>
+    <ul id="user-container">
+
+    </ul>
+    <div class="setpost">
+        <input type="text" id="title" placeholder="set title">
+        <input type="text" id="des" placeholder="set des">
+        <input type="text" id="userid" placeholder="userid">
+        <button id="submit">Submit</button>
+    </div>
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(json => displayUser(json))
+            .catch(error => console.error(error))
+
+        function displayUser(users) {
+            // const userNames = users.map(name => name.username)
+            const ul = document.getElementById('user-container')
+            for (let i = 0; i < users.length; i++) {
+                const usercap = users[i];
+                console.log(usercap)
+                const user = `<h1>${usercap.username}</h1>
+                    <h3>${usercap.name}</h3>
+                    <p>${usercap.email}</p>
+                    <p>${usercap.address.street}, ${usercap.address.suite}, City: ${usercap.address.city}</p>
+                    <p>${usercap.phone}</p>
+                    `
+                const li = document.createElement("div")
+                li.innerHTML = user;
+                ul.append(li);
+            }
+        }
+
+        const title = document.getElementById('title')
+        const des = document.getElementById('des')
+        const userid = document.getElementById('userid')
+        document.getElementById('submit').addEventListener('click', function() {
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8',
+                    },
+                    body: JSON.stringify({
+                        title: title.value,
+                        des: des.value,
+                        userId: userid.value,
+                    })
+                })
+                .then((response) => response.json())
+                .then((json) => console.log(json))
+                .catch((error) => console.error(error))
+        })
+    </script>
+</body>
+
+</html>
