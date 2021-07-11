@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="contents">
+
+    </ul>
+    <button id="submit">Add Another Item</button>
+    <script>
+        const ul = document.getElementById('contents');
+        document.getElementById('submit').addEventListener('click', function() {
+            const li = document.createElement('li');
+            li.innerHTML = `<p onclick="delete_paragraph(event)">Hi I am here to make you famous</p>`
+            ul.append(li)
+        })
+
+        function delete_paragraph(event) {
+            // console.log(event.target.innerText)
+            // console.log(event.target.parentElement.nodeName)
+            event.target.parentElement.parentElement.removeChild(event.target.parentElement)
+        }
+    </script>
+</body>
+
+</html>
